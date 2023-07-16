@@ -44,7 +44,10 @@ if 1 < chosen_number > 3:
     quit()
 
 test_string = task_template.TEXTS[chosen_number_modified]
-words = test_string.split()
+uncleared_words = test_string.split()
+words = []
+for word in uncleared_words:
+     words.append(word.strip(".,:;"))
 
 words_counter = len(words)
 print("pocet slov vybraneho textu je: ", words_counter)
@@ -82,10 +85,18 @@ for word in words:
                 pass
 print("Pocet cisel: ", sum_digits)  
 
-most_occurences = {}
+occurences_table = {}
 for word in words:
      lenght_word = len(word)
-     if lenght_word not in most_occurences:
-          most_occurences[lenght_word] = 1
+     if lenght_word not in occurences_table:
+          occurences_table[lenght_word] = 1
      else:
-          most_occurences[lenght_word] = most_occurences[lenght_word] + 1
+          occurences_table[lenght_word] = occurences_table[lenght_word] + 1
+sorted_occurences_table = dict(sorted(occurences_table.items()))
+print(sorted_occurences_table)
+
+graph_occurences = []
+for occurence in sorted_occurences_table:
+    count = sorted_occurences_table[occurence]
+    graph = "*" * count
+    print(f"{occurence:<2}|{graph:<15}|{count:<2}")
