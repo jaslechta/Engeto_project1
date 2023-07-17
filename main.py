@@ -21,15 +21,15 @@ if not username in users:
 elif users.get(username) == password:
     print("Welcome to the app,", username)
 else:
-    pocet_pokusu = 3
-    print("Wrong password, ", pocet_pokusu, "attepmts left")
-    while pocet_pokusu > 0:
+    attempts_counter = 3
+    print("Wrong password, ", attempts_counter, "attepmts left")
+    while attempts_counter > 0:
         if users.get(username) == input("Try to enter your password again: "):
          print("Welcome to the app, ", username)
          break
         else:
-            pocet_pokusu -= 1
-            print("Wrong password, ", pocet_pokusu ," attempts left")          
+            attempts_counter -= 1
+            print("Wrong password, ", attempts_counter ," attempts left")          
     else:
         print("Too many wrong attemps, terminating the program..")
         quit()
